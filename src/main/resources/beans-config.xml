@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="helloBean" class="ch2.HelloBean">
+		<constructor-arg>
+			<value>Justin</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>Hello</value>
+		</constructor-arg>		
+	</bean>
+	
+	<bean id="writer" class="ch1.UsbDiskWriter"/>
+	<bean id="business" class="ch1.Business">
+		<property name="deviceWriter">
+			<ref bean="writer"/>
+		</property>
+	</bean>	
+	
+	<bean id="musicBox" class="ch2.MusicBoxFactory" factory-method="createMusicBox"/>
+	
+	<!-- bean inheritance -->
+	<bean id="fatherBean" abstract="true">
+		<property name="name">
+			<value>guest</value>
+		</property>
+		<property name="age">
+			<value>18</value>
+		</property>		
+	</bean>
+	
+	<bean id="son" class="ch2.SomeBean" parent="fatherBean">
+		<property name="name">
+			<value>Justin</value>
+		</property>
+	</bean>
+	
+	<!-- auto wire demo -->
+	<bean id="dateBean" class="java.util.Date" />
+	<bean id="helloBean2" class ="ch2.HelloBean" autowire="byType">
+		<property name="helloWorld" value="auto wiring demp">
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<!-- collection demo -->
+	<bean id="people1" class ="ch2.SomeBean">
+		<property name="name" value="people 1">
+		</property>
+	</bean>
+
+	<bean id="people2" class ="ch2.SomeBean">
+		<property name="name" value="people 2">
+		</property>
+	</bean>
+		
+	<bean id="cb" class ="ch3.CollectionBean">
+		<property name="strArray">
+			<list>
+				<value>String</value>
+				<value>List</value>
+			</list>
+		</property>
+		<property name="sbArray">
+			<list>
+				<ref bean="people1"/>
+				<ref bean="people2"/>
+			</list>
+		</property>
+		<property name="list">
+			<list>
+				<value>ListTest</value>
+				<ref bean="people1"/>
+				<ref bean="people2"/>
+			</list>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="MapTest">
+					<value>good morning!</value>
+				</entry>
+				<entry key="MapOtherTest">
+					<ref bean="people1"/>
+				</entry>
+			</map>
+		</property>
+	</bean>	
+</beans>
